@@ -5,34 +5,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
-<body>
-    <form action="">
-        <label for="stationCode">Station code :- </label>
-        <input type="text" placeholder="Station Code" id="stationCode">
-        <label for="hours">Within</label>
-        <select name="Within" id="within">
-            <option value="2">In 2 Hours</option>
-            <option value="4">In 4 Hours</option>
-        </select>
-        <input type="submit" value="Check">
-    </form>
+<body class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <img src="source/head_img.jpg" class="img-fluid" style="height: 200px; width: 100%;" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class=" bg-white">
+                            <ul class="nav shadow nav-pills rounded nav-fill">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                        aria-controls="home" aria-selected="true">Live Station</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#contact" role="tab"
+                                        aria-controls="profile" aria-selected="false">PNR Status</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#profile" role="tab"
+                                        aria-controls="contact" aria-selected="false">Find Station Code</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Messages" data-toggle="tab" href="#seat" role="tab"
+                                        aria-controls="contact" aria-selected="false">Live Train Status</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                <form action="">
+                                    <label for="stationCode">Station code :- </label>
+                                    <input type="text" placeholder="Station Code" id="stationCode">
+                                    <label for="hours" class=" ml-4">Within</label>
+                                    <select name="Within" id="within">
+                                        <option value="2">2 Hours</option>
+                                        <option value="4">4 Hours</option>
+                                    </select>
+                                    <button id="staBtn" class=" ml-4">Check</button>
+                                    <p id="noOfTrain"></p>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive mt-3">
+                                    <table class="table table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Train No.</th>
+                                                <th>Train Name</th>
+                                                <th>Schl-Expd Arr</th>
+                                                <th>Schl-Expd Dep</th>
+                                                <th>Delay</th>
+                                                <th>P.F No</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-12 mt-3 text-center">
+                                <form>
+                                    <label for="trainNumber">Station Name :- </label>
+                                    <input type="text" id="stFrom" placeholder="Station Name">
+                                    <button onclick="handleStaClick()">Find</button>
+                                </form>
+                                <div id="staInfo" class="text-center mt-5">
 
-    <table border="1">
-        <thead>
-            <tr>
-                <td>Train No.</td>
-                <td>Train Name</td>
-                <td>Schedule Arrival</td>
-                <td>Schedule Departure</td>
-                <td>Expected Departure</td>
-            </tr>
-        </thead>
-        <tbody id="tbody">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="row">
+                            <div class="col-12 text-center mt-3">
+                                <form action="PNRCheck">
+                                    <label for="pnrNumber">PNR No. :-</label>
+                                    <input type="number">
+                                    <button id="pnrBtn">Check</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="seat" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="text-center mt-3">
+                            <form action="">
+                                <label for="">Train No :- </label>
+                                <input type="text">
+                                <button>Check</button>
+                            </form>
+                        </div>
 
-        </tbody id="tbody">
-    </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
     <script type="text/javascript" src="script.js"></script>
 </body>
 
